@@ -604,7 +604,7 @@ export default function App() {
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-accent transition-colors"
+                className="inline-flex items-center gap-2 bg-primary text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-accent transition-colors cursor-pointer"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                 }}
@@ -613,7 +613,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => scrollTo("worklog")}
-                className="inline-flex items-center gap-2 text-primary border border-primary/25 text-sm font-medium px-5 py-2.5 rounded-lg hover:border-primary/50 hover:bg-primary/4 transition-colors"
+                className="inline-flex items-center gap-2 text-primary border border-primary/25 text-sm font-medium px-5 py-2.5 rounded-lg hover:border-primary/50 hover:bg-primary/4 transition-colors cursor-pointer"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                 }}
