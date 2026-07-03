@@ -14,6 +14,7 @@ import {
   X,
   FileText,
   ChevronDown,
+  Menu,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -108,7 +109,7 @@ const PROJECTS: Project[] = [
     type: "E-Catalog",
     year: "2026",
     period: "2026.06",
-    role: "UI Publishing · Interactive Front-end · AI-assisted Implementation",
+    role: "UI Publishing · Interactive UI · Responsive Development",
     contribution: 100,
     stack: [
       "React",
@@ -120,11 +121,11 @@ const PROJECTS: Project[] = [
       "Figma MCP",
       "Cursor",
     ],
-    desc: "Figma 디자인을 AI-assisted workflow로 구현한 인터랙티브 전자카탈로그. 인트로 시퀀스, 페이지 전환, 섹션별 모션·캐러셀을 중심으로 제작했습니다.",
+    desc: "Figma 디자인을 AI-assisted workflow로 구현한 인터랙티브 전자카탈로그입니다. 인트로 시퀀스, 페이지 전환, 섹션별 모션·캐러셀을 중심으로 제작했습니다.",
     overview:
       "AX-ONE은 기업의 AI 역량을 진단하고 맞춤형 커리큘럼으로 AX(AI 전환)를 지원하는 교육 솔루션으로, 이 프로젝트는 도입 배경부터 진단·커리큘럼·성과 관리까지 이어지는 서비스 스토리를 몰입감 있게 전달하기 위한 인터랙티브 전자카탈로그입니다. Figma 디자인을 Cursor·Figma MCP로 페이지 단위 구현한 뒤, 생성된 코드를 그대로 사용하지 않고 디자인 의도와 콘텐츠 흐름에 맞게 반복 수정했습니다. 데스크톱(1920px)은 휠·키보드 기반 페이지 탐색과 자동 재생을, 모바일(360px 기준)은 스와이프·세로 스택 레이아웃과 축소된 모션으로 각각 최적화했습니다.",
     implementation: [
-      "React Router 기반 카탈로그 라우팅·페이지 맵 구조 설계 및 솔루션/프로젝트/회사 등 다수 섹션 화면 구현",
+      "React Router 기반 카탈로그 라우팅·페이지 맵 구조 설계 및 솔루션 · 프로젝트 · 회사 등 다수 섹션 화면 구현",
       "Figma MCP·Cursor로 UI 초안을 생성한 뒤 간격·정렬·반응형·모션을 수동 검수·수정",
       "커버 인트로 시퀀스 모션 및 페이지 진입 애니메이션 구현으로 첫 화면 몰입감 강화",
       "데스크톱 휠·키보드 페이징, 모바일 터치 스와이프·자동 재생 등 카탈로그 탐색 인터랙션 구현",
@@ -132,10 +133,10 @@ const PROJECTS: Project[] = [
       "데스크톱 레이아웃을 유지하면서 모바일 전용 마크업·스타일을 분기하는 반응형 UI 퍼블리싱",
     ],
     challenges: [
-      "정렬을 transform으로 잡은 요소에 Framer Motion 값을 걸 때 축이 덮어써지는 문제를, 정렬용·모션용 래퍼를 분리해 해결",
-      "차트 등장 모션에서 캐시된 이미지의 onLoad 미발화로 높이가 0이 되는 이슈를, 마운트 측정·complete 체크·load 이벤트를 병행해 해결",
-      "그래프가 그려지는 흐름을 로봇 이동과 맞추기 위해 단일 progress 값을 여러 속성에 매핑해 애니메이션을 동기화",
-      "카탈로그 전역 스와이프와 페이지 내부 캐러셀·드래그 인터랙션의 충돌을 이벤트 범위 분리로 해결",
+      "Framer Motion 기반 모션과 transform 정렬이 충돌하지 않도록 레이아웃·애니메이션 구조를 분리",
+      "캐시된 이미지에서 onLoad가 실행되지 않아 차트 높이가 0으로 계산되는 문제를, 마운트 측정·complete 체크·load 이벤트 병행으로 해결",
+      "그래프와 로봇 이동 애니메이션의 진행 타이밍이 어긋나는 문제를, 단일 progress 값을 여러 속성에 매핑해 동기화",
+      "카탈로그 전역 스와이프와 페이지 내부 캐러셀·드래그가 함께 반응하는 문제를, 이벤트 처리 범위 분리로 해결",
     ],
     liveUrl: "https://ecatalog.rgbcom.kr/AXONE/",
   },
@@ -167,9 +168,9 @@ const PROJECTS: Project[] = [
       "1920px 기준 스케일링 레이아웃을 유지하며 모바일 전용 마크업·스타일로 분기하는 반응형 퍼블리싱",
     ],
     challenges: [
-      "커버의 인트로 화면과 목차 화면을 오갈 때 메뉴가 깜빡이며 사라졌다 다시 나타나는 현상을, React StrictMode의 이중 마운트와 화면 전환 조건·중복 애니메이션 래퍼가 겹친 원인으로 좁혀 화면 매핑과 전환 처리를 정리해 해결",
-      "화면을 벗어날 때 목차 메뉴가 슬라이드 아웃되며 잔상이 남는 문제를, 해당 화면을 벗어나는 순간 종료 애니메이션을 즉시 처리하도록 분기해 해결",
-      "이미지를 가운데 기준으로 양쪽으로 퍼지게 애니메이션할 때 중앙 정렬용 transform과 크기 애니메이션이 서로 덮어쓰던 문제를, 정렬과 모션 값을 함께 제어해 중심을 고정한 채 확장되도록 해결",
+      "인트로·목차 전환 과정에서 발생한 메뉴 깜빡임을 화면 매핑과 애니메이션 구조 정리로 안정화",
+      "화면 이탈 시 목차 메뉴의 슬라이드 아웃 잔상이 남는 문제를 종료 애니메이션 분기로 해결",
+      "중앙 정렬 transform과 확장 애니메이션이 충돌하는 문제를 정렬·모션 값을 분리해 중심을 유지하도록 해결",
     ],
     liveUrl: "http://www.fnsi.co.kr/ecatalog/",
   },
@@ -191,20 +192,19 @@ const PROJECTS: Project[] = [
       "GnuBoard",
       "Cursor",
     ],
-    desc: "구강 케어 전문 기업 (주)디오텍코리아의 국문/영문/중문 홈페이지. 메인 풀스크린 섹션과 회사소개·제품·핵심역량·고객지원 등 다수 서브페이지 퍼블리싱, 그누보드 연동, 온라인 문의·관리자 CMS 안정화를 담당했습니다.",
+    desc: "구강 케어 전문 기업 디오텍코리아의 국문·영문·중문 기업 홈페이지입니다. 풀스크린 메인, 다수 서브페이지 퍼블리싱과 GnuBoard 기반 문의·관리자 CMS 연동을 담당했습니다.",
     overview:
-      "디오텍코리아는 지속 가능한 소재와 제품 혁신을 바탕으로 구강 케어 제품을 제조·공급하는 기업입니다. PHP 기반으로 국문(ko)·영문(en)·중문(cn)을 분리 운영하며, 메인에는 FullPage.js 풀스크린 섹션과 스크롤 등장 애니메이션, 서브에는 회사소개·제품 라인업·핵심역량·인증·뉴스·홍보영상·카탈로그·FAQ·온라인 문의까지 아우르는 기업 사이트입니다. 프론트는 Swiper·Intersection Observer 기반 인터랙션과 반응형 레이아웃으로 구성했고, 백오피스는 그누보드5 커스텀 스킨으로 뉴스·인증·문의·카탈로그·영상 등을 관리합니다. 저는 전체 페이지 퍼블리싱과 함께 다국어 문의 폼·관리자 글 등록·파비콘·폰트·데이터 저장 흐름 등 운영 이슈를 점검·수정했습니다.",
+      "디오텍코리아는 지속 가능한 소재와 제품 혁신을 바탕으로 구강 케어 제품을 제조·공급하는 기업입니다. PHP 기반으로 국문(ko)·영문(en)·중문(cn)을 분리 운영하며, 메인에는 FullPage.js 기반 풀스크린 섹션과 스크롤 등장 애니메이션을 적용했습니다. 회사소개·제품 라인업·핵심역량·인증·뉴스·홍보영상·카탈로그·FAQ·온라인 문의까지 기업 사이트 전반을 구현했고, GnuBoard5 커스텀 스킨을 통해 뉴스·인증·문의·카탈로그·영상 등을 관리할 수 있도록 구성했습니다. 전체 페이지 퍼블리싱과 함께 다국어 문의 폼, 관리자 글 등록, 폰트·파비콘·데이터 저장 흐름 등 운영 이슈를 점검·수정했습니다.",
     implementation: [
-      "국문/영문/중문 이중·삼중 구조 PHP 템플릿 퍼블리싱 및 회사소개·제품·핵심역량·고객지원(뉴스·문의·영상·카탈로그·FAQ) 전 서브페이지 UI 구현",
+      "국문·영문·중문 PHP 템플릿 구조 퍼블리싱 및 회사소개·제품·핵심역량·고객지원 전 서브페이지 UI 구현",
       "메인 FullPage.js 섹션, Swiper 비주얼, scroll-ani(Intersection Observer) 기반 스크롤 등장 연출 및 모바일 뷰포트(vh) 대응",
-      "그누보드5 게시판(뉴스·인증·문의·카탈로그·영상·팝업 등) API 연동, inquiry 커스텀 필드(성명·이메일·연락처·회사) 저장 로직 및 관리자 알림 메일 흐름 구성",
-      "영문 온라인 문의 페이지 UI/문구 현지화, 중문 Noto Sans SC 폰트 적용, 파비콘·manifest 경로 정리",
+      "그누보드5 게시판·문의·카탈로그·영상·팝업 관리 기능 연동 및 inquiry 커스텀 필드 저장 로직 구성",
+      "영문 온라인 문의 페이지 UI · 문구 현지화, 중문 Noto Sans SC 폰트 적용, 파비콘·manifest 경로 정리",
       "관리자 CMS 발행 버튼 중복 ID·submit 비활성화 오류 수정, 로고 클릭 시 관리자 대시보드 이동, 문의 등록 시 제목·내용 외 필드 미저장 문제 해결",
     ],
     challenges: [
-      "관리자에서 글 ‘발행’ 버튼을 눌러도 저장되지 않던 문제를 해결. 버튼의 식별값이 비어 있어 제출 처리 스크립트가 오류를 일으키던 원인을 찾아, 버튼 설정과 스크립트를 정리하고 뉴스·인증·영상 등 모든 게시판 작성 화면에 동일하게 적용.",
-      "온라인 문의를내면 제목과 내용만 남고 이름·이메일·연락처·회사 정보가 비어 있던 문제를, 문의 전용 입력값이 서버 저장 단계까지 전달·반영되도록 저장 흐름을 보완",
-      "게시판 본문에 넣은 유튜브·비메오 영상이 재생되지 않던 이슈를, 보안 필터와 허용 영상 주소·에디터 설정이 맞지 않는 쪽으로 원인을 좁히고 대응 방향을 정리",
+      "관리자 발행 버튼의 식별값 누락으로 저장 스크립트가 오류를 일으키던 문제를, 버튼 설정과 제출 로직 정리로 게시판 작성 화면에 공통 적용",
+      "온라인 문의의 커스텀 필드가 저장되지 않던 문제를, 폼 입력값과 서버 저장 흐름을 보완해 해결",
     ],
     liveUrl: "http://www.deotech.net/ko/",
   },
@@ -226,20 +226,20 @@ const PROJECTS: Project[] = [
       "GnuBoard",
       "Cursor",
     ],
-    desc: "웨어러블 재활 로봇 전문기업 (주)휴로틱스의 국문/영문 홈페이지. 메인 비주얼과 제품·회사소개·채용·고객지원 등 전 서브페이지 퍼블리싱, 그누보드5 게시판 연동, 제품 페이지의 스크롤 기반 가로 전환 인터랙션 구현을 담당했습니다.",
+    desc: "웨어러블 재활 로봇 전문기업 휴로틱스의 국문·영문 홈페이지입니다. 제품 페이지의 스크롤 기반 가로 전환 인터랙션과 전 서브페이지 퍼블리싱, GnuBoard 연동을 담당했습니다.",
     overview:
-      "휴로틱스는 근력 보조·재활을 위한 웨어러블 로봇(H-Medi, Extension/Flexion)을 개발하는 기업입니다. PHP 기반으로 국문(ko)·영문(en)을 분리 운영하며, 메인에는 Swiper 비주얼과 Intersection Observer 기반 스크롤 등장 애니메이션을, 제품 페이지에는 마우스휠·스크롤로 넘어가는 풀스크린 가로 슬라이드 인터랙션을 적용했습니다. 서브에는 회사소개·연혁·핵심역량·오시는길·제품 라인업·채용·뉴스·인증·홍보영상·고객문의·매뉴얼까지 아우르며, 백오피스는 그누보드5 커스텀 스킨으로 뉴스·인증·문의·영상·채용 등을 관리합니다. 프론트는 Swiper·GSAP ScrollTrigger·Intersection Observer 기반 인터랙션과 반응형 레이아웃으로 구성했고, 저는 전체 페이지 퍼블리싱과 함께 게시판 연동·데이터 저장 흐름·영상 임베드·다국어 대응 등 운영 이슈를 점검·수정했습니다.",
+      "휴로틱스는 근력 보조·재활을 위한 웨어러블 로봇(H-Medi, Extension · Flexion)을 개발하는 기업입니다. 국문과 영문을 분리 운영하는 PHP 기반 기업 홈페이지로, 메인에는 Swiper 비주얼과 Intersection Observer 기반 스크롤 등장 애니메이션을 적용했고 제품 페이지에는 마우스휠·스크롤 입력으로 전환되는 풀스크린 가로 슬라이드 인터랙션을 구현했습니다. 회사소개·연혁·핵심역량·제품·채용·뉴스·인증·홍보영상·고객문의·매뉴얼 등 기업 사이트 전반의 UI를 구성했으며, GnuBoard5 커스텀 스킨을 통해 뉴스·인증·문의·영상·채용 콘텐츠를 관리할 수 있도록 연동했습니다. 전체 페이지 퍼블리싱과 함께 게시판 데이터 저장, 영상 임베드, 다국어 스타일, 파비콘·manifest 경로 등 운영 과정에서 발생한 이슈를 점검·수정했습니다.",
     implementation: [
-      "국문/영문 이중 구조 PHP 템플릿 퍼블리싱 및 회사소개·연혁·핵심역량·제품·채용·고객지원(뉴스·문의·영상·인증·매뉴얼) 전 서브페이지 UI 구현",
-      "제품 페이지 Swiper(fade) 기반 풀스크린 섹션을 마우스휠·스크롤로 넘기는 가로 전환 인터랙션, hashNavigation, lnb 진행바/active 동기화, 슬라이드별 배경영상 재생 제어, 마지막 슬라이드에서 일반 스크롤로 자연스럽게 전환하는 로직 구현",
+      "국문·영문 PHP 템플릿 구조 퍼블리싱 및 회사소개·연혁·핵심역량·제품·채용·고객지원 전 서브페이지 UI 구현",
+      "제품 페이지 Swiper(fade) 기반 풀스크린 섹션을 마우스휠·스크롤로 넘기는 가로 전환 인터랙션, hashNavigation, lnb 진행바 · active 동기화, 슬라이드별 배경영상 재생 제어, 마지막 슬라이드에서 일반 스크롤로 자연스럽게 전환하는 로직 구현",
       "회사연혁 페이지 GSAP ScrollTrigger 타임라인 진행바 및 연도 메뉴 active 스크롤 동기화, 모바일 뷰포트(vh) 대응",
       "그누보드5 게시판(뉴스·인증·문의·영상·채용·배너 등) 연동, 채용 페이지의 마감일(D-day) 계산 및 전체 진행 중 공고 수 DB 집계, 문의 커스텀 필드(성명·이메일·연락처·회사) 저장 로직 구성",
       "영상 게시판 유튜브·비메오 임베드를 위한 HTMLPurifier 필터 대응, 뉴스 카테고리 라벨 삼항 연산자 오류 수정, 파비콘·manifest 경로 및 영문 스타일 정리",
     ],
     challenges: [
-      "세로 스크롤 입력을 가로 슬라이드 전환으로 바꾸면서, 슬라이드별로 배경영상을 재생/정지하고 진행바·메뉴 상태를 맞추며, 첫·마지막 슬라이드에서는 페이지 일반 스크롤로 매끄럽게 이어지도록 스크롤 잠금과 해제 타이밍을 세밀하게 제어",
-      "회사연혁 타임라인에서 연도별 섹션 높이가 제각각이라 스크롤 시 특정 연도가 순간적으로만 활성화되거나 건너뛰던 문제를, 진입 이벤트 방식 대신 현재 스크롤 위치를 기준으로 활성 연도를 계산하도록 로직을 바꿔 안정적으로 동기화",
-      "채용 공고 개수가 현재 페이지 기준으로만 집계되던 문제와 온라인 문의 시 이름·연락처 등 커스텀 필드가 저장되지 않던 문제를, 게시판 데이터 저장 흐름을 보완해 해결",
+      "세로 스크롤을 가로 슬라이드 전환으로 연결하면서 배경영상 재생·진행바·메뉴 상태와 첫·마지막 슬라이드의 일반 스크롤 전환이 자연스럽게 이어지도록 스크롤 잠금·해제 타이밍을 제어",
+      "회사연혁 타임라인에서 섹션별 높이 차이로 활성 연도가 건너뛰는 문제를, 현재 스크롤 위치 기준으로 활성 연도를 계산하도록 변경해 해결",
+      "채용 공고 수 집계와 온라인 문의 커스텀 필드 저장이 누락되는 문제를, 게시판 데이터 조회·저장 흐름을 보완해 해결",
     ],
     liveUrl: "https://www.hurotics.com/",
   },
@@ -263,18 +263,17 @@ const PROJECTS: Project[] = [
     ],
     desc: "실리콘 주방·유아용품 전문 기업 신성실리콘의 국문/영문 홈페이지. 메인 비주얼과 제품·핵심역량·보유기술 등 다수 서브페이지의 인터랙티브 퍼블리싱, 반응형 대응, 검색엔진 최적화를 담당했습니다.",
     overview:
-      "신성실리콘은 실리콘 주방·유아 OEM&ODM 전문 기업으로, 회사소개·제품·핵심역량·보유기술/설비·OEM&ODM·고객지원까지 아우르는 기업 사이트입니다. PHP 기반으로 국문/영문을 분리 운영하며, 메인에는 풀스크린 비주얼 슬라이드와 카운터·글로벌 네트워크 인터랙션이, 서브에는 스크롤에 반응하는 등장·전환 모션이 적용되어 있습니다. 저는 전체 페이지 퍼블리싱과 함께 스크롤 연동 애니메이션, 메인 비주얼·기술 소개 영상 인터랙션, 그누보드 게시판 연동, 검색엔진 최적화 개선 작업을 맡았습니다.",
+      "신성실리콘은 실리콘 주방·유아용품 OEM&ODM 전문 기업입니다. 국문과 영문을 분리 운영하는 PHP 기반 기업 홈페이지로, 메인에는 풀스크린 비주얼 슬라이드와 카운터·글로벌 네트워크 인터랙션을 적용했고, 서브 페이지에는 스크롤에 반응하는 등장·전환 모션을 구현했습니다. 회사소개·제품·핵심역량·보유기술·설비·OEM&ODM·고객지원 등 기업 사이트 전반의 UI를 구성했으며, GnuBoard 기반 뉴스·문의·카탈로그·인증 콘텐츠 관리 기능도 연동했습니다. 전체 페이지 퍼블리싱과 함께 메인 비주얼·기술 소개 영상 인터랙션, 온라인 문의 저장 흐름, 검색엔진 최적화, 모바일 브라우저 대응까지 담당했습니다.",
     implementation: [
-      "국문/영문 이중 구조 PHP 템플릿 퍼블리싱 및 회사소개·제품·핵심역량·보유기술/설비·OEM&ODM·고객지원 전 서브페이지 UI 구현",
+      "국문 · 영문 PHP 템플릿 구조 퍼블리싱 및 회사소개·제품·핵심역량·보유기술 · 설비·OEM&ODM·고객지원 전 서브페이지 UI 구현",
       "메인 비주얼 슬라이드, 재생 진행률·일시정지, 기술 소개 영상 인터랙션과 핵심역량·보유기술 페이지의 스크롤 연동 인트로 연출 구현",
-      "그누보드 게시판(뉴스·문의·카탈로그·인증) 데이터 연동 및 온라인 문의 폼 저장 흐름 구성",
+      "그누보드 게시판(뉴스·문의·카탈로그·인증) 연동 및 온라인 문의 폼 저장·검증 흐름 구성",
       "뉴스 목록 링크 구조 정리, 구조화 데이터(JSON-LD) 마크업, 이미지 대체 텍스트·지연 로딩 등 검색엔진 최적화 적용",
     ],
     challenges: [
-      "핵심역량·보유기술 페이지에서 대표 이미지 확장 연출 시 중앙 정렬과 크기 애니메이션이 충돌하고, 스크롤 반복 시 화면이 깜빡이던 문제를 타이밍·복원 순서를 정리해 해결",
-      "메인 비주얼에서 슬라이드 전환마다 배경 축소 모션이 다시 실행되지 않고, 영상 재생·정지·슬라이드 동기화가 어긋나던 문제를 전환 흐름 전체를 정리해 안정화",
-      "문의 폼에 캡차 UI만 있고 실제 검증이 빠져 미입력 제출이 가능했던 문제를, 프론트 제출 검증과 서버 저장 단계 강제 검증을 함께 연결하고 국문/영문 문구까지 분기해 해결",
-      "아이폰에서 특정 섹션 요소가 화면 밖으로 밀려 보이지 않던 문제를, 모바일 브라우저의 포지셔닝·애니메이션 특성에 맞춰 조정",
+      "핵심역량·보유기술 페이지에서 중앙 정렬 transform과 이미지 확장 애니메이션이 충돌하고, 반복 스크롤 시 화면이 깜빡이는 문제를 타이밍과 복원 순서 정리로 해결",
+      "메인 비주얼 전환 시 배경 축소 모션이 재실행되지 않고 영상 재생·정지·슬라이드 상태가 어긋나는 문제를 전환 흐름 재구성으로 안정화",
+      "문의 폼의 검증 UI와 실제 저장 검증이 분리된 문제를, 클라이언트·서버 단계 검증으로 보완",
     ],
     liveUrl: "https://ssmold.co.kr/ko/",
   },
@@ -284,8 +283,6 @@ interface WorkLog {
   category: string;
   title: string;
   desc: string;
-  date: string;
-  tags: string[];
   problem: string;
   cause: string;
   solution: string;
@@ -295,128 +292,108 @@ interface WorkLog {
 
 const WORKLOGS: WorkLog[] = [
   {
-    category: "Server / SMTP",
-    title: "Gmail SMTP 메일 발송 오류를 점검하는 순서",
-    desc: "앱 비밀번호 설정부터 방화벽, PHPMailer 설정까지 단계별 점검 항목을 정리했습니다.",
-    date: "2026.05",
-    tags: ["SMTP", "PHP", "Troubleshooting"],
+    category: "Front-end Development",
+    title: "Framer Motion과 transform 기반 정렬 충돌 해결",
+    desc: "정렬용 transform과 모션 transform이 서로 덮어쓰는 문제를 래퍼 분리 구조로 해결했습니다.",
     problem:
-      "운영 서버에서 문의 메일이 발송되지 않는 오류가 지속적으로 발생했습니다. 로컬 환경에서는 정상 동작했으나 서버에서만 실패했습니다.",
+      "가운데 정렬을 위해 transform을 적용한 요소에 Framer Motion의 위치·스케일 애니메이션을 추가하자, 기존 정렬 값이 덮어써져 요소 위치가 틀어졌습니다.",
     cause:
-      "Gmail의 보안 정책 변경으로 일반 비밀번호 인증이 차단되었고, 서버 방화벽에서 포트 587이 막혀 있었습니다.",
+      "CSS 정렬과 Framer Motion이 같은 DOM 요소의 transform 속성을 동시에 제어하고 있었습니다.",
     solution:
-      "Google 계정에서 앱 비밀번호를 발급하고 PHPMailer의 SMTP 설정을 수정했습니다. 방화벽에서 포트 587을 열고 STARTTLS 암호화 방식을 적용했습니다.",
+      "외부 래퍼는 정렬 전용으로 유지하고, 내부 래퍼에만 Framer Motion 애니메이션을 적용해 transform의 역할을 분리했습니다.",
     result:
-      "메일 발송이 정상적으로 복구되었으며 이후 동일한 환경에서 재현 없이 안정적으로 운영되고 있습니다.",
+      "기존 중앙 정렬을 유지하면서 위치·투명도·스케일 애니메이션을 안정적으로 적용할 수 있었습니다.",
     takeaway:
-      "SMTP 오류는 코드보다 서버 환경·인증 정책 문제인 경우가 많습니다. 점검 순서를 포트 → 인증 → 코드 순으로 가져가는 것이 효율적입니다.",
+      "레이아웃 정렬과 모션 애니메이션이 모두 transform을 사용한다면, 하나의 요소에 함께 적용하기보다 역할별 래퍼를 분리하는 편이 안전합니다.",
   },
   {
-    category: "SSL",
-    title: "SSL 적용 후 리다이렉트 루프 해결 방법",
-    desc: "Apache .htaccess 설정과 Let's Encrypt 인증 충돌로 발생한 무한 루프의 원인과 해결 과정을 기록했습니다.",
-    date: "2026.04",
-    tags: ["SSL", "Apache", "Server"],
+    category: "React / Interactive UI",
+    title: "React StrictMode 환경의 화면 전환 깜빡임 해결",
+    desc: "인트로와 목차 화면 전환 시 메뉴가 사라졌다 다시 나타나는 문제를 화면 매핑과 애니메이션 구조 정리로 해결했습니다.",
     problem:
-      "Let's Encrypt SSL 인증서를 적용한 후 사이트 접속 시 ERR_TOO_MANY_REDIRECTS 오류가 발생했습니다.",
+      "인트로 화면과 목차 화면을 오갈 때 메뉴가 순간적으로 사라졌다 다시 나타나며 화면 전환이 불안정하게 보였습니다.",
     cause:
-      ".htaccess의 HTTP→HTTPS 리다이렉트 규칙과 Apache VirtualHost 설정이 중복 적용되어 무한 루프가 형성되었습니다.",
+      "React StrictMode 환경에서 컴포넌트가 이중 마운트되고, 화면 전환 조건과 중복 애니메이션 래퍼가 함께 동작하고 있었습니다.",
     solution:
-      "Apache VirtualHost에서 SSL 리다이렉트를 처리하도록 일원화하고 .htaccess의 중복 규칙을 제거했습니다. RewriteCond에 %{HTTPS} off 조건을 명확히 지정했습니다.",
+      "화면별 렌더링 매핑과 전환 조건을 정리하고, 중복 적용된 애니메이션 래퍼를 분리해 메뉴 노출 상태를 일관되게 관리했습니다.",
     result:
-      "리다이렉트 루프가 해소되었고 HTTP→HTTPS 전환이 단일 경로로 정상 동작합니다.",
+      "인트로와 목차 화면을 오갈 때 메뉴가 깜빡이지 않고 자연스럽게 전환되도록 개선했습니다.",
     takeaway:
-      "SSL 리다이렉트는 Apache 설정과 .htaccess 둘 중 하나에서만 처리해야 합니다. 양쪽에 중복 설정이 있으면 루프가 발생합니다.",
+      "화면 전환 애니메이션이 불안정할 때는 단순히 모션 값을 조정하기보다, 컴포넌트 마운트 구조와 렌더링 조건을 함께 점검해야 합니다.",
   },
   {
     category: "Interactive UI",
-    title: "Swiper 두 개를 하나의 네비게이션으로 연동하는 방법",
-    desc: "메인 슬라이더와 썸네일 슬라이더를 단일 컨트롤로 동기화하는 구현 방식과 주의사항을 정리했습니다.",
-    date: "2026.03",
-    tags: ["Swiper", "JavaScript", "Interactive UI"],
+    title: "GSAP ScrollTrigger 기반 연혁 메뉴 동기화 안정화",
+    desc: "섹션별 높이가 다른 연혁 페이지에서 스크롤 위치를 기준으로 활성 연도를 계산해 메뉴 동기화를 안정화했습니다.",
     problem:
-      "메인 슬라이더와 썸네일 슬라이더가 각각 독립적으로 동작해 사용자가 두 곳을 별도로 제어해야 하는 불편함이 있었습니다.",
+      "회사 연혁 페이지에서 스크롤 시 특정 연도가 잠깐만 활성화되거나 일부 연도가 건너뛰는 현상이 발생했습니다.",
     cause:
-      "두 Swiper 인스턴스가 서로의 상태를 참조하지 않아 슬라이드 전환 시 동기화되지 않는 구조였습니다.",
+      "연도별 섹션 높이가 서로 다른 상태에서 진입 이벤트 중심으로 active 상태를 처리해, 스크롤 위치와 메뉴 상태가 정확히 맞지 않았습니다.",
     solution:
-      "Swiper의 thumbs 옵션과 controller 모듈을 활용해 두 인스턴스를 양방향으로 연결했습니다. 초기화 순서(썸네일 → 메인)를 지켜야 올바르게 동작합니다.",
+      "섹션 진입 여부에만 의존하지 않고 현재 스크롤 위치를 기준으로 활성 연도를 계산하도록 로직을 변경했습니다.",
     result:
-      "메인 슬라이더와 썸네일이 완전히 동기화되어 어느 쪽에서 조작해도 양쪽이 함께 움직입니다.",
+      "섹션 높이가 달라도 현재 화면 위치에 맞는 연도 메뉴가 안정적으로 활성화되었습니다.",
     takeaway:
-      "Swiper 연동 시 인스턴스 초기화 순서가 중요합니다. thumbs로 연결할 경우 썸네일 Swiper를 반드시 먼저 생성해야 합니다.",
-  },
-  {
-    category: "Responsive",
-    title:
-      "[B Project] 가로형 카탈로그를 모바일 구조로 재구성한 과정",
-    desc: "콘텐츠 우선순위 재정의부터 터치 인터랙션 설계까지, 반응형 전환에서 고려한 판단 기준을 기록했습니다.",
-    date: "2026.02",
-    tags: ["Responsive", "Mobile", "CSS"],
-    problem:
-      "데스크탑 전용으로 제작된 가로 스크롤 카탈로그가 모바일에서 전혀 사용 불가능한 상태였습니다.",
-    cause:
-      "가로형 레이아웃 자체가 모바일 세로 스크롤 패턴과 근본적으로 충돌했으며, 터치 이벤트 처리도 전혀 고려되지 않았습니다.",
-    solution:
-      "콘텐츠 블록의 우선순위를 재정의하고 CSS order 속성으로 모바일 배치를 별도 설계했습니다. Swiper로 가로 탐색 구조를 대체하고 터치 제스처를 적용했습니다.",
-    result:
-      "모바일에서 자연스러운 세로 스크롤 + 카테고리 간 스와이프 탐색이 가능해졌습니다.",
-    takeaway:
-      "가로형 콘텐츠를 모바일로 전환할 때 단순 CSS 변경으로는 한계가 있습니다. 콘텐츠 우선순위와 탐색 방식 자체를 모바일 맥락에서 다시 설계해야 합니다.",
+      "가변 높이 섹션이 많은 스크롤 인터랙션에서는 이벤트 발생 여부보다 현재 스크롤 위치를 기준으로 상태를 계산하는 방식이 더 안정적입니다.",
   },
   {
     category: "PHP / GnuBoard",
-    title:
-      "PHP 환경에서 이미지 업로드 오류가 발생했을 때 확인할 항목",
-    desc: "권한 설정, php.ini 제한, 업로드 디렉토리 경로 문제를 유형별로 분류해 점검 순서를 정리했습니다.",
-    date: "2026.01",
-    tags: ["PHP", "GnuBoard", "Troubleshooting"],
+    title: "온라인 문의 폼의 커스텀 필드 저장 누락 해결",
+    desc: "문의 등록 시 제목과 내용만 저장되던 문제를 입력값 전달부터 서버 저장 단계까지 점검해 해결했습니다.",
     problem:
-      "GnuBoard 관리자 페이지에서 이미지 업로드 시 오류가 발생하며 파일이 저장되지 않는 문제가 생겼습니다.",
+      "온라인 문의 등록 후 제목과 내용은 저장되지만 이름·이메일·연락처·회사 정보가 관리자 화면에 남지 않았습니다.",
     cause:
-      "서버 마이그레이션 후 업로드 디렉토리의 소유자 권한이 변경되었고, php.ini의 upload_max_filesize 설정이 기존보다 낮게 설정되어 있었습니다.",
+      "문의 전용 입력 필드가 폼 화면에는 존재했지만, 서버 저장 처리 단계에서 게시판 필드로 전달·저장되지 않고 있었습니다.",
     solution:
-      "chown 명령으로 업로드 디렉토리 소유자를 웹서버 사용자로 변경하고 chmod 755를 적용했습니다. php.ini에서 upload_max_filesize와 post_max_size를 조정했습니다.",
+      "각 입력 필드의 name 값과 서버 처리 로직을 점검하고, 문의 전용 커스텀 필드가 저장 단계까지 전달되도록 흐름을 보완했습니다.",
     result:
-      "이미지 업로드가 정상적으로 동작하게 되었으며 관리자 콘텐츠 등록 워크플로가 복구되었습니다.",
+      "문의 등록 시 기본 내용과 함께 이름·이메일·연락처·회사 정보가 정상적으로 저장되고 관리자에서 확인할 수 있게 되었습니다.",
     takeaway:
-      "서버 마이그레이션 후에는 디렉토리 권한과 php.ini 설정이 변경될 수 있으므로 반드시 체크리스트로 확인해야 합니다.",
+      "폼 UI가 정상적으로 보여도 실제 저장 로직까지 연결되지 않으면 데이터가 누락될 수 있으므로, 화면·전송·서버 저장 단계를 함께 확인해야 합니다.",
   },
   {
-    category: "Performance",
-    title: "반응형 웹에서 콘텐츠 우선순위를 정하는 기준",
-    desc: "뷰포트 크기별 콘텐츠 위계를 설계하는 방법과 실무에서 자주 발생하는 판단 기준을 정리했습니다.",
-    date: "2025.12",
-    tags: ["Responsive", "Performance", "UX"],
+    category: "Form Validation",
+    title: "문의 폼의 프론트·서버 이중 검증 적용",
+    desc: "캡차 UI만 표시되고 실제 검증이 누락된 문의 폼에 클라이언트와 서버 단계의 검증을 함께 적용했습니다.",
     problem:
-      "반응형 레이아웃 작업 시 어떤 콘텐츠를 모바일에서 우선 노출하고 어떤 것을 숨길지 명확한 기준이 없어 매번 판단이 달라졌습니다.",
+      "문의 폼에 캡차 UI는 있었지만 실제 입력 여부를 검증하지 않아, 필수값을 입력하지 않아도 제출이 가능한 상태였습니다.",
     cause:
-      "콘텐츠 우선순위에 대한 기획 단계의 정의 없이 퍼블리싱 단계에서 즉흥적으로 결정하는 관행이 문제였습니다.",
+      "브라우저 단계의 제출 검증과 서버 저장 전 검증이 모두 충분히 적용되지 않아, UI와 실제 검증 로직이 분리되어 있었습니다.",
     solution:
-      "사용자의 핵심 작업 목표를 기준으로 콘텐츠를 1순위(필수)·2순위(보조)·3순위(숨김 가능)로 분류하는 체크리스트를 만들었습니다.",
+      "프론트엔드에서 제출 전 필수 입력값과 캡차 상태를 확인하고, 서버에서도 동일한 조건을 다시 검증하도록 저장 로직을 보완했습니다.",
     result:
-      "이후 반응형 작업 시 의사결정이 빠르고 일관되게 이루어졌으며, 모바일 UX 품질이 향상되었습니다.",
+      "필수 입력값이나 검증값이 누락된 문의는 저장되지 않도록 처리했고, 국문·영문 환경별 안내 문구도 분기했습니다.",
     takeaway:
-      "반응형 콘텐츠 우선순위는 퍼블리셔가 아닌 기획 단계에서 결정되어야 합니다. 기준이 없으면 퍼블리셔가 UX 판단까지 떠맡게 됩니다.",
+      "폼 검증은 클라이언트 단계만으로 처리하지 않고, 서버 저장 전 검증까지 함께 적용해야 데이터 품질과 입력 안정성을 확보할 수 있습니다.",
   },
 ];
 
 function useActiveSection() {
   const [active, setActive] = useState("");
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    SECTION_IDS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActive(id);
-        },
-        { threshold: 0.25 },
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
+    const handleScroll = () => {
+      const offset = 80;
+      const atBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 10;
+
+      if (atBottom) {
+        setActive(SECTION_IDS[SECTION_IDS.length - 1]);
+        return;
+      }
+
+      let current = "";
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= offset) current = id;
+      }
+      setActive(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return active;
 }
@@ -430,6 +407,7 @@ function scrollTo(id: string) {
 export default function App() {
   const activeSection = useActiveSection();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] =
     useState<Project | null>(null);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -468,7 +446,7 @@ export default function App() {
             onClick={() =>
               window.scrollTo({ top: 0, behavior: "smooth" })
             }
-            className="flex flex-col leading-none group"
+            className="flex flex-col leading-none group cursor-pointer"
           >
             <span
               className="text-[11px] font-bold tracking-[0.2em] text-primary group-hover:text-accent transition-colors"
@@ -495,11 +473,42 @@ export default function App() {
                 <button
                   key={item}
                   onClick={() => scrollTo(id)}
-                  className={`text-xs font-semibold tracking-widest transition-colors ${isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"}`}
+                  className={`text-xs font-semibold tracking-widest transition-colors cursor-pointer ${isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"}`}
                   style={{
                     fontFamily:
                       "'Plus Jakarta Sans', sans-serif",
                   }}
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </nav>
+          <button
+            className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg hover:bg-black/5 transition-colors cursor-pointer"
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            aria-label="메뉴 열기"
+          >
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+        {/* 모바일 메뉴 */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${mobileMenuOpen ? "max-h-80 border-t border-border" : "max-h-0"} ${scrolled ? "bg-white/90 backdrop-blur-md" : "bg-white/95 backdrop-blur-md"}`}
+        >
+          <nav className="flex flex-col px-6 py-4 gap-1">
+            {NAV_ITEMS.map((item, i) => {
+              const id = SECTION_IDS[i];
+              const isActive = activeSection === id;
+              return (
+                <button
+                  key={item}
+                  onClick={() => {
+                    scrollTo(id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`text-xs font-semibold tracking-widest text-left py-3 border-b border-border/50 last:border-0 transition-colors cursor-pointer ${isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"}`}
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {item}
                 </button>
@@ -982,9 +991,9 @@ export default function App() {
                     onClick={() =>
                       setExpandedLog(isOpen ? null : i)
                     }
-                    className="w-full flex flex-col md:flex-row md:items-center gap-3 py-5 px-4 text-left hover:bg-white rounded-lg transition-all duration-200"
+                    className="w-full flex flex-col md:flex-row md:items-center gap-3 py-5 px-4 text-left hover:bg-white rounded-lg transition-all duration-200 cursor-pointer"
                   >
-                    <div className="md:w-36 shrink-0">
+                    <div className="md:w-52 shrink-0">
                       <span
                         className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase"
                         style={{
@@ -1010,29 +1019,6 @@ export default function App() {
                       </p>
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
-                      <div className="flex flex-wrap gap-1.5 hidden md:flex">
-                        {log.tags.map((t) => (
-                          <span
-                            key={t}
-                            className="text-[10px] font-medium text-muted-foreground bg-muted rounded px-2 py-0.5"
-                            style={{
-                              fontFamily:
-                                "'JetBrains Mono', monospace",
-                            }}
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                      <span
-                        className="text-xs text-muted-foreground shrink-0"
-                        style={{
-                          fontFamily:
-                            "'JetBrains Mono', monospace",
-                        }}
-                      >
-                        {log.date}
-                      </span>
                       <ChevronDown
                         size={14}
                         className={`text-muted-foreground shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
@@ -1044,7 +1030,7 @@ export default function App() {
                   <div
                     className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}
                   >
-                    <div className="pb-6 pt-1 pl-0 md:pl-[144px] grid sm:grid-cols-2 gap-4">
+                    <div className="pb-6 pt-1 pl-0 md:pl-[208px] grid sm:grid-cols-2 gap-4">
                       {[
                         {
                           label: "Problem",
