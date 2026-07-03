@@ -135,6 +135,7 @@
 
   html {
     font-size: var(--font-size);
+    word-break: keep-all;
   }
 
   h1 {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowRight,
   ArrowUp,
@@ -92,6 +92,7 @@ interface Project {
   year: string;
   period: string;
   role: string;
+  contribution: number;
   stack: string[];
   desc: string;
   overview: string;
@@ -102,142 +103,180 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=750&fit=crop&auto=format",
-    name: "RIGAS Product Catalog Renewal",
-    type: "B2B Product Catalog",
+    img: "/portfolio-homepage-2026/images/ax-one.png",
+    name: "AX-ONE E-catalog",
+    type: "E-Catalog",
     year: "2026",
-    period: "2025.11 — 2026.02",
-    role: "UI Publishing · Responsive Development · Interactive Catalog",
-    stack: ["React", "Swiper", "CSS", "PHP"],
-    desc: "복잡한 제품 정보를 사용자가 빠르게 탐색할 수 있도록 카탈로그 구조와 반응형 콘텐츠 흐름을 재구성했습니다.",
+    period: "2026.06",
+    role: "UI Publishing · Interactive Front-end · AI-assisted Implementation",
+    contribution: 100,
+    stack: [
+      "React",
+      "JavaScript",
+      "React Router",
+      "Framer Motion",
+      "CSS",
+      "Tailwind CSS",
+      "Figma MCP",
+      "Cursor",
+    ],
+    desc: "Figma 디자인을 AI-assisted workflow로 구현한 인터랙티브 전자카탈로그. 인트로 시퀀스, 페이지 전환, 섹션별 모션·캐러셀을 중심으로 제작했습니다.",
     overview:
-      "B2B 제조사의 제품 카탈로그 사이트를 전면 리뉴얼한 프로젝트입니다. 수백 개의 제품 정보를 카테고리·필터·슬라이더 구조로 재편해 탐색 효율을 높이고, 모바일 환경에서도 동일한 정보 접근성을 확보했습니다.",
+      "AX-ONE은 기업의 AI 역량을 진단하고 맞춤형 커리큘럼으로 AX(AI 전환)를 지원하는 교육 솔루션으로, 이 프로젝트는 도입 배경부터 진단·커리큘럼·성과 관리까지 이어지는 서비스 스토리를 몰입감 있게 전달하기 위한 인터랙티브 전자카탈로그입니다. Figma 디자인을 Cursor·Figma MCP로 페이지 단위 구현한 뒤, 생성된 코드를 그대로 사용하지 않고 디자인 의도와 콘텐츠 흐름에 맞게 반복 수정했습니다. 데스크톱(1920px)은 휠·키보드 기반 페이지 탐색과 자동 재생을, 모바일(360px 기준)은 스와이프·세로 스택 레이아웃과 축소된 모션으로 각각 최적화했습니다.",
     implementation: [
-      "React 기반 제품 필터·검색 UI 구현 및 상태 관리",
-      "Swiper를 활용한 제품 이미지 갤러리 및 썸네일 연동",
-      "PHP 백엔드와 AJAX 통신으로 동적 제품 데이터 로딩",
-      "반응형 그리드 레이아웃으로 데스크탑·태블릿·모바일 대응",
+      "React Router 기반 카탈로그 라우팅·페이지 맵 구조 설계 및 솔루션/프로젝트/회사 등 다수 섹션 화면 구현",
+      "Figma MCP·Cursor로 UI 초안을 생성한 뒤 간격·정렬·반응형·모션을 수동 검수·수정",
+      "커버 인트로 시퀀스 모션 및 페이지 진입 애니메이션 구현으로 첫 화면 몰입감 강화",
+      "데스크톱 휠·키보드 페이징, 모바일 터치 스와이프·자동 재생 등 카탈로그 탐색 인터랙션 구현",
+      "AX 도입 효과·설계 전략의 단계별 모션, 역량 진단 척도 UI, 자동 재생·드래그 캐러셀 등 페이지별 인터랙션 구현",
+      "데스크톱 레이아웃을 유지하면서 모바일 전용 마크업·스타일을 분기하는 반응형 UI 퍼블리싱",
     ],
     challenges: [
-      "가로형 카탈로그 구조를 모바일에서 세로형으로 자연스럽게 전환하는 레이아웃 재설계",
-      "대량 제품 이미지 최적화 및 지연 로딩으로 초기 로드 시간 단축",
+      "정렬을 transform으로 잡은 요소에 Framer Motion 값을 걸 때 축이 덮어써지는 문제를, 정렬용·모션용 래퍼를 분리해 해결",
+      "차트 등장 모션에서 캐시된 이미지의 onLoad 미발화로 높이가 0이 되는 이슈를, 마운트 측정·complete 체크·load 이벤트를 병행해 해결",
+      "그래프가 그려지는 흐름을 로봇 이동과 맞추기 위해 단일 progress 값을 여러 속성에 매핑해 애니메이션을 동기화",
+      "카탈로그 전역 스와이프와 페이지 내부 캐러셀·드래그 인터랙션의 충돌을 이벤트 범위 분리로 해결",
     ],
-    liveUrl: "https://example.com",
+    liveUrl: "https://ecatalog.rgbcom.kr/AXONE/",
   },
   {
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=750&fit=crop&auto=format",
-    name: "Corporate Website Rebuild",
-    type: "Company Homepage",
+    img: "/portfolio-homepage-2026/images/fns.png",
+    name: "FNS E-catalog",
+    type: "E-Catalog",
+    year: "2026",
+    period: "2026.04",
+    role: "UI Publishing · Interactive UI · Responsive Development",
+    contribution: 100,
+    stack: [
+      "React",
+      "JavaScript",
+      "React Router",
+      "Framer Motion",
+      "CSS",
+      "Tailwind CSS",
+      "Cursor",
+    ],
+    desc: "반도체 부품 기업 FNS의 제품·기술 카탈로그를 인터랙티브 웹으로 구현한 프로젝트. 페이지 단위 탐색과 섹션별 등장 모션 구현에 집중했습니다.",
+    overview:
+      "FNS는 반도체 공정 장비의 핵심 부품(RF, Plasma, ESC)을 자체 설계·제조하는 기술 기업입니다. 이 전자카탈로그는 회사 소개와 함께 Remote Plasma Source, RF Blocking Filter, RF Matcher, RF Generator, ESC Solution 등 다섯 개 핵심 기술 콘텐츠를 담고 있으며, 화면 전체가 한 편의 프레젠테이션처럼 페이지 단위로 넘어가도록 되어 있습니다. 저는 이 화면들을 인터랙티브 웹으로 퍼블리싱·구현하는 역할을 맡아, 데스크톱의 휠·키보드 페이징과 스페이스바 자동 재생, 모바일의 터치 스와이프 같은 탐색 인터랙션과 페이지 진입 모션, 그리고 반응형 대응을 담당했습니다.",
+    implementation: [
+      "중첩 페이지 맵을 평탄화(flatten)해 순차 인덱스로 다루는 카탈로그 라우팅 구조 구현 및 회사·기술 섹션 화면 퍼블리싱",
+      "커버 인트로 시퀀스와 페이지 진입 애니메이션 구현으로 첫 화면 몰입감 강화",
+      "데스크톱 휠·키보드 페이징과 스페이스바 자동 재생, 모바일 터치 스와이프로 이어지는 통합 탐색 인터랙션 구현",
+      "RF·Plasma·ESC 기술 페이지별 단계 등장 모션과 스펙·성능 지표 UI 구현",
+      "1920px 기준 스케일링 레이아웃을 유지하며 모바일 전용 마크업·스타일로 분기하는 반응형 퍼블리싱",
+    ],
+    challenges: [
+      "커버의 인트로 화면과 목차 화면을 오갈 때 메뉴가 깜빡이며 사라졌다 다시 나타나는 현상을, React StrictMode의 이중 마운트와 화면 전환 조건·중복 애니메이션 래퍼가 겹친 원인으로 좁혀 화면 매핑과 전환 처리를 정리해 해결",
+      "화면을 벗어날 때 목차 메뉴가 슬라이드 아웃되며 잔상이 남는 문제를, 해당 화면을 벗어나는 순간 종료 애니메이션을 즉시 처리하도록 분기해 해결",
+      "이미지를 가운데 기준으로 양쪽으로 퍼지게 애니메이션할 때 중앙 정렬용 transform과 크기 애니메이션이 서로 덮어쓰던 문제를, 정렬과 모션 값을 함께 제어해 중심을 고정한 채 확장되도록 해결",
+    ],
+    liveUrl: "http://www.fnsi.co.kr/ecatalog/",
+  },
+  {
+    img: "/portfolio-homepage-2026/images/deotech.png",
+    name: "DEOTECH Korea Homepage",
+    type: "Homepage",
     year: "2025",
-    period: "2025.04 — 2025.08",
-    role: "Full Publishing · CMS Integration · Server Setup",
-    stack: ["HTML", "CSS", "JavaScript", "GnuBoard"],
-    desc: "레거시 구조의 기업 홈페이지를 반응형으로 재구축하고 CMS와 연동해 콘텐츠 운영 환경을 개선했습니다.",
+    period: "2025.12",
+    role: "UI Publishing · Interactive UI · Responsive Development · GnuBoard Integration",
+    contribution: 100,
+    stack: [
+      "PHP",
+      "JavaScript",
+      "jQuery",
+      "Swiper",
+      "FullPage.js",
+      "CSS",
+      "GnuBoard",
+      "Cursor",
+    ],
+    desc: "구강 케어 전문 기업 (주)디오텍코리아의 국문/영문/중문 홈페이지. 메인 풀스크린 섹션과 회사소개·제품·핵심역량·고객지원 등 다수 서브페이지 퍼블리싱, 그누보드 연동, 온라인 문의·관리자 CMS 안정화를 담당했습니다.",
     overview:
-      "10년 이상 운영된 기업 홈페이지를 현대적인 반응형 구조로 전면 재구축했습니다. 기존 GnuBoard CMS를 유지하면서 퍼블리싱 레이어를 완전히 교체하고, 서버 마이그레이션과 SSL 적용까지 전담했습니다.",
+      "디오텍코리아는 지속 가능한 소재와 제품 혁신을 바탕으로 구강 케어 제품을 제조·공급하는 기업입니다. PHP 기반으로 국문(ko)·영문(en)·중문(cn)을 분리 운영하며, 메인에는 FullPage.js 풀스크린 섹션과 스크롤 등장 애니메이션, 서브에는 회사소개·제품 라인업·핵심역량·인증·뉴스·홍보영상·카탈로그·FAQ·온라인 문의까지 아우르는 기업 사이트입니다. 프론트는 Swiper·Intersection Observer 기반 인터랙션과 반응형 레이아웃으로 구성했고, 백오피스는 그누보드5 커스텀 스킨으로 뉴스·인증·문의·카탈로그·영상 등을 관리합니다. 저는 전체 페이지 퍼블리싱과 함께 다국어 문의 폼·관리자 글 등록·파비콘·폰트·데이터 저장 흐름 등 운영 이슈를 점검·수정했습니다.",
     implementation: [
-      "GnuBoard 스킨 커스터마이징으로 디자인 시안 100% 구현",
-      "CSS Grid·Flexbox 기반 반응형 레이아웃 전면 재설계",
-      "JavaScript 메뉴·슬라이더·스크롤 인터랙션 구현",
-      "리눅스 서버 마이그레이션 및 Apache 가상 호스트·SSL 설정",
+      "국문/영문/중문 이중·삼중 구조 PHP 템플릿 퍼블리싱 및 회사소개·제품·핵심역량·고객지원(뉴스·문의·영상·카탈로그·FAQ) 전 서브페이지 UI 구현",
+      "메인 FullPage.js 섹션, Swiper 비주얼, scroll-ani(Intersection Observer) 기반 스크롤 등장 연출 및 모바일 뷰포트(vh) 대응",
+      "그누보드5 게시판(뉴스·인증·문의·카탈로그·영상·팝업 등) API 연동, inquiry 커스텀 필드(성명·이메일·연락처·회사) 저장 로직 및 관리자 알림 메일 흐름 구성",
+      "영문 온라인 문의 페이지 UI/문구 현지화, 중문 Noto Sans SC 폰트 적용, 파비콘·manifest 경로 정리",
+      "관리자 CMS 발행 버튼 중복 ID·submit 비활성화 오류 수정, 로고 클릭 시 관리자 대시보드 이동, 문의 등록 시 제목·내용 외 필드 미저장 문제 해결",
     ],
     challenges: [
-      "레거시 GnuBoard 구조를 유지하면서 디자인만 완전히 교체하는 스킨 재설계",
-      "기존 URL 구조를 보존하면서 301 리다이렉트로 SEO 손실 방지",
+      "관리자에서 글 ‘발행’ 버튼을 눌러도 저장되지 않던 문제를 해결. 버튼의 식별값이 비어 있어 제출 처리 스크립트가 오류를 일으키던 원인을 찾아, 버튼 설정과 스크립트를 정리하고 뉴스·인증·영상 등 모든 게시판 작성 화면에 동일하게 적용.",
+      "온라인 문의를내면 제목과 내용만 남고 이름·이메일·연락처·회사 정보가 비어 있던 문제를, 문의 전용 입력값이 서버 저장 단계까지 전달·반영되도록 저장 흐름을 보완",
+      "게시판 본문에 넣은 유튜브·비메오 영상이 재생되지 않던 이슈를, 보안 필터와 허용 영상 주소·에디터 설정이 맞지 않는 쪽으로 원인을 좁히고 대응 방향을 정리",
     ],
-    liveUrl: "https://example.com",
+    liveUrl: "http://www.deotech.net/ko/",
   },
   {
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=750&fit=crop&auto=format",
-    name: "Interactive Product Intro",
-    type: "Product Introduction Site",
+    img: "/portfolio-homepage-2026/images/hurotics.png",
+    name: "HUROTICS Homepage",
+    type: "Homepage",
     year: "2025",
-    period: "2025.01 — 2025.04",
-    role: "Front-end Development · Animation · Responsive",
-    stack: ["React", "Next.js", "Tailwind CSS"],
-    desc: "제품 특성을 시각적으로 전달하기 위해 스크롤 기반 인터랙션과 애니메이션 흐름을 설계하고 구현했습니다.",
+    period: "2025.11",
+    role: "UI Publishing · Interactive UI · Responsive Development · GnuBoard Integration",
+    contribution: 100,
+    stack: [
+      "PHP",
+      "JavaScript",
+      "jQuery",
+      "Swiper",
+      "GSAP (ScrollTrigger)",
+      "CSS",
+      "GnuBoard",
+      "Cursor",
+    ],
+    desc: "웨어러블 재활 로봇 전문기업 (주)휴로틱스의 국문/영문 홈페이지. 메인 비주얼과 제품·회사소개·채용·고객지원 등 전 서브페이지 퍼블리싱, 그누보드5 게시판 연동, 제품 페이지의 스크롤 기반 가로 전환 인터랙션 구현을 담당했습니다.",
     overview:
-      "신제품 출시에 맞춰 제작된 마이크로사이트입니다. 스크롤 진행에 따라 제품 특징이 순차적으로 노출되는 인터랙티브 스토리텔링 구조로 설계했으며, Next.js App Router 기반으로 구축했습니다.",
+      "휴로틱스는 근력 보조·재활을 위한 웨어러블 로봇(H-Medi, Extension/Flexion)을 개발하는 기업입니다. PHP 기반으로 국문(ko)·영문(en)을 분리 운영하며, 메인에는 Swiper 비주얼과 Intersection Observer 기반 스크롤 등장 애니메이션을, 제품 페이지에는 마우스휠·스크롤로 넘어가는 풀스크린 가로 슬라이드 인터랙션을 적용했습니다. 서브에는 회사소개·연혁·핵심역량·오시는길·제품 라인업·채용·뉴스·인증·홍보영상·고객문의·매뉴얼까지 아우르며, 백오피스는 그누보드5 커스텀 스킨으로 뉴스·인증·문의·영상·채용 등을 관리합니다. 프론트는 Swiper·GSAP ScrollTrigger·Intersection Observer 기반 인터랙션과 반응형 레이아웃으로 구성했고, 저는 전체 페이지 퍼블리싱과 함께 게시판 연동·데이터 저장 흐름·영상 임베드·다국어 대응 등 운영 이슈를 점검·수정했습니다.",
     implementation: [
-      "Intersection Observer 기반 스크롤 트리거 애니메이션 구현",
-      "Next.js App Router + Tailwind CSS로 빠른 컴포넌트 개발",
-      "CSS transform 활용한 제품 이미지 패럴랙스 효과",
-      "Vercel 배포 및 도메인 연결",
+      "국문/영문 이중 구조 PHP 템플릿 퍼블리싱 및 회사소개·연혁·핵심역량·제품·채용·고객지원(뉴스·문의·영상·인증·매뉴얼) 전 서브페이지 UI 구현",
+      "제품 페이지 Swiper(fade) 기반 풀스크린 섹션을 마우스휠·스크롤로 넘기는 가로 전환 인터랙션, hashNavigation, lnb 진행바/active 동기화, 슬라이드별 배경영상 재생 제어, 마지막 슬라이드에서 일반 스크롤로 자연스럽게 전환하는 로직 구현",
+      "회사연혁 페이지 GSAP ScrollTrigger 타임라인 진행바 및 연도 메뉴 active 스크롤 동기화, 모바일 뷰포트(vh) 대응",
+      "그누보드5 게시판(뉴스·인증·문의·영상·채용·배너 등) 연동, 채용 페이지의 마감일(D-day) 계산 및 전체 진행 중 공고 수 DB 집계, 문의 커스텀 필드(성명·이메일·연락처·회사) 저장 로직 구성",
+      "영상 게시판 유튜브·비메오 임베드를 위한 HTMLPurifier 필터 대응, 뉴스 카테고리 라벨 삼항 연산자 오류 수정, 파비콘·manifest 경로 및 영문 스타일 정리",
     ],
     challenges: [
-      "스크롤 애니메이션이 모바일 기기에서 성능 저하 없이 동작하도록 최적화",
-      "다양한 화면 비율에서 제품 이미지 비율과 텍스트 레이아웃 일관성 유지",
+      "세로 스크롤 입력을 가로 슬라이드 전환으로 바꾸면서, 슬라이드별로 배경영상을 재생/정지하고 진행바·메뉴 상태를 맞추며, 첫·마지막 슬라이드에서는 페이지 일반 스크롤로 매끄럽게 이어지도록 스크롤 잠금과 해제 타이밍을 세밀하게 제어",
+      "회사연혁 타임라인에서 연도별 섹션 높이가 제각각이라 스크롤 시 특정 연도가 순간적으로만 활성화되거나 건너뛰던 문제를, 진입 이벤트 방식 대신 현재 스크롤 위치를 기준으로 활성 연도를 계산하도록 로직을 바꿔 안정적으로 동기화",
+      "채용 공고 개수가 현재 페이지 기준으로만 집계되던 문제와 온라인 문의 시 이름·연락처 등 커스텀 필드가 저장되지 않던 문제를, 게시판 데이터 저장 흐름을 보완해 해결",
     ],
-    liveUrl: "https://example.com",
+    liveUrl: "https://www.hurotics.com/",
   },
   {
-    img: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=750&fit=crop&auto=format",
-    name: "E-Catalog Mobile Restructure",
-    type: "Electronic Catalog",
-    year: "2024",
-    period: "2024.07 — 2024.10",
-    role: "Publishing · Mobile Optimization · Cross-browser",
-    stack: ["JavaScript", "CSS", "PHP", "Swiper"],
-    desc: "가로형 전자카탈로그를 모바일 환경에 맞게 레이아웃 구조와 네비게이션 방식을 전면 재설계했습니다.",
+    img: "/portfolio-homepage-2026/images/shinsung.png",
+    name: "Shinsung Silicone Homepage",
+    type: "Homepage",
+    year: "2025",
+    period: "2025.10",
+    role: "UI Publishing · Interactive UI · Responsive Development · GnuBoard Integration · SEO Optimization",
+    contribution: 100,
+    stack: [
+      "PHP",
+      "JavaScript",
+      "jQuery",
+      "Swiper",
+      "GSAP (ScrollTrigger)",
+      "CSS",
+      "GnuBoard",
+      "Cursor",
+    ],
+    desc: "실리콘 주방·유아용품 전문 기업 신성실리콘의 국문/영문 홈페이지. 메인 비주얼과 제품·핵심역량·보유기술 등 다수 서브페이지의 인터랙티브 퍼블리싱, 반응형 대응, 검색엔진 최적화를 담당했습니다.",
     overview:
-      "기존 데스크탑 전용 가로 스크롤 전자카탈로그를 모바일에서도 완전히 동작하도록 재구성한 프로젝트입니다. 콘텐츠 우선순위를 재정의하고 Swiper 기반 모바일 네비게이션 구조를 새로 설계했습니다.",
+      "신성실리콘은 실리콘 주방·유아 OEM&ODM 전문 기업으로, 회사소개·제품·핵심역량·보유기술/설비·OEM&ODM·고객지원까지 아우르는 기업 사이트입니다. PHP 기반으로 국문/영문을 분리 운영하며, 메인에는 풀스크린 비주얼 슬라이드와 카운터·글로벌 네트워크 인터랙션이, 서브에는 스크롤에 반응하는 등장·전환 모션이 적용되어 있습니다. 저는 전체 페이지 퍼블리싱과 함께 스크롤 연동 애니메이션, 메인 비주얼·기술 소개 영상 인터랙션, 그누보드 게시판 연동, 검색엔진 최적화 개선 작업을 맡았습니다.",
     implementation: [
-      "Swiper 두 인스턴스를 단일 네비게이션으로 동기화하는 연동 구현",
-      "CSS media query 기반 콘텐츠 블록 우선순위 재배치",
-      "터치 이벤트 처리 및 모바일 제스처 인터랙션 최적화",
-      "크로스 브라우저 (Chrome·Safari·Samsung Internet) 호환성 검증",
+      "국문/영문 이중 구조 PHP 템플릿 퍼블리싱 및 회사소개·제품·핵심역량·보유기술/설비·OEM&ODM·고객지원 전 서브페이지 UI 구현",
+      "메인 비주얼 슬라이드, 재생 진행률·일시정지, 기술 소개 영상 인터랙션과 핵심역량·보유기술 페이지의 스크롤 연동 인트로 연출 구현",
+      "그누보드 게시판(뉴스·문의·카탈로그·인증) 데이터 연동 및 온라인 문의 폼 저장 흐름 구성",
+      "뉴스 목록 링크 구조 정리, 구조화 데이터(JSON-LD) 마크업, 이미지 대체 텍스트·지연 로딩 등 검색엔진 최적화 적용",
     ],
     challenges: [
-      "가로형 페이지 흐름을 세로형 스크롤 구조로 자연스럽게 전환하는 콘텐츠 재설계",
-      "iOS Safari의 100vh 이슈 및 스크롤 관성 차이 대응",
+      "핵심역량·보유기술 페이지에서 대표 이미지 확장 연출 시 중앙 정렬과 크기 애니메이션이 충돌하고, 스크롤 반복 시 화면이 깜빡이던 문제를 타이밍·복원 순서를 정리해 해결",
+      "메인 비주얼에서 슬라이드 전환마다 배경 축소 모션이 다시 실행되지 않고, 영상 재생·정지·슬라이드 동기화가 어긋나던 문제를 전환 흐름 전체를 정리해 안정화",
+      "문의 폼에 캡차 UI만 있고 실제 검증이 빠져 미입력 제출이 가능했던 문제를, 프론트 제출 검증과 서버 저장 단계 강제 검증을 함께 연결하고 국문/영문 문구까지 분기해 해결",
+      "아이폰에서 특정 섹션 요소가 화면 밖으로 밀려 보이지 않던 문제를, 모바일 브라우저의 포지셔닝·애니메이션 특성에 맞춰 조정",
     ],
-    liveUrl: "https://example.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=750&fit=crop&auto=format",
-    name: "GnuBoard Skin Customization",
-    type: "CMS Skinning",
-    year: "2024",
-    period: "2024.03 — 2024.05",
-    role: "GnuBoard Skinning · PHP · Responsive Publishing",
-    stack: ["GnuBoard", "PHP", "HTML", "CSS"],
-    desc: "기존 GnuBoard 기반 사이트의 스킨을 전면 교체해 디자인 시안을 완전히 구현하고 관리자 운영 편의성을 개선했습니다.",
-    overview:
-      "중소기업 홈페이지의 GnuBoard 스킨을 새 디자인 시안에 맞게 전면 커스터마이징한 프로젝트입니다. 기존 CMS 구조와 DB를 유지하면서 프론트엔드 레이어만 교체해 운영 연속성을 확보했습니다.",
-    implementation: [
-      "GnuBoard 스킨 템플릿 구조 분석 후 PHP 스킨 파일 전면 재작성",
-      "CSS Grid 기반 반응형 레이아웃으로 모바일·태블릿 대응",
-      "게시판·회원·팝업 등 주요 모듈 스킨 커스터마이징",
-      "관리자 페이지 레이아웃 정비 및 운영 가이드 문서 작성",
-    ],
-    challenges: [
-      "GnuBoard 내부 변수·함수 의존성을 유지하면서 HTML 구조를 완전히 교체하는 작업 범위 조율",
-      "기존 콘텐츠 데이터와 새 레이아웃 간 이미지 비율·텍스트 길이 불일치 대응",
-    ],
-    liveUrl: "https://example.com",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&h=750&fit=crop&auto=format",
-    name: "Landing Page Series",
-    type: "Marketing Landing Pages",
-    year: "2023",
-    period: "2023.06 — 2023.12",
-    role: "UI Publishing · JavaScript Animation · Cross-browser",
-    stack: ["HTML", "CSS", "JavaScript"],
-    desc: "제품 출시 및 이벤트 목적의 단기 랜딩페이지를 다수 제작했습니다. 빠른 납기와 높은 완성도를 동시에 확보하는 작업 방식을 정립했습니다.",
-    overview:
-      "반기 동안 여러 제품 출시·프로모션용 랜딩페이지를 연속으로 제작한 시리즈 프로젝트입니다. 디자인 시안이 확정된 후 짧은 일정 안에 고품질 퍼블리싱을 반복 납품하며 효율적인 작업 템플릿을 구축했습니다.",
-    implementation: [
-      "Scroll-triggered 섹션 애니메이션 및 카운터 효과 순수 JavaScript로 구현",
-      "CSS 변수 기반 테마 토큰으로 다수 페이지 간 일관성 유지",
-      "OG 태그·구조화 데이터 적용으로 SNS 공유 및 검색 노출 최적화",
-      "GTM 삽입 및 GA 전환 이벤트 연동",
-    ],
-    challenges: [
-      "디자인 시안 변경이 잦은 환경에서 CSS 구조를 유연하게 유지하는 컴포넌트화 전략",
-      "IE11 부분 지원 요건 충족을 위한 CSS·JS 폴리필 적용",
-    ],
-    liveUrl: "https://example.com",
+    liveUrl: "https://ssmold.co.kr/ko/",
   },
 ];
 
@@ -641,17 +680,17 @@ export default function App() {
                     },
                     {
                       key: "Career",
-                      value: "3년 (2022 — 현재)",
+                      value: "4년 6개월 실무 경험",
                     },
                     {
                       key: "Email",
-                      value: "hello@yourname.dev",
-                      href: "mailto:hello@yourname.dev",
+                      value: "front-son@naver.com",
+                      href: "mailto:front-son@naver.com",
                     },
                     {
                       key: "GitHub",
-                      value: "github.com/yourname",
-                      href: "https://github.com",
+                      value: "github.com/shj-f",
+                      href: "https://github.com/shj-f",
                     },
                   ].map(({ key, value, href }) => (
                     <div
@@ -825,7 +864,7 @@ export default function App() {
                 onClick={() => setSelectedProject(p)}
                 onMouseEnter={() => setHoveredProject(p.name)}
                 onMouseLeave={() => setHoveredProject(null)}
-                className="group text-left bg-background rounded-2xl overflow-hidden border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300"
+                className="group text-left bg-background rounded-2xl overflow-hidden border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
               >
                 <div className="relative overflow-hidden aspect-[16/9] bg-muted">
                   <img
@@ -885,9 +924,21 @@ export default function App() {
                       </span>
                     ))}
                   </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    {p.role}
-                  </p>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <p className="text-[11px] text-muted-foreground leading-relaxed flex-1 min-w-0 flex flex-wrap">
+                      {p.role.split(" · ").map((item, i, arr) => (
+                        <span key={i} className="whitespace-nowrap">
+                          {item}{i < arr.length - 1 && "\u00A0·\u00A0"}
+                        </span>
+                      ))}
+                    </p>
+                    <span
+                      className="shrink-0 text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5"
+                      style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    >
+                      기여도 {p.contribution}%
+                    </span>
+                  </div>
                 </div>
               </button>
             ))}
@@ -1071,17 +1122,17 @@ export default function App() {
               {
                 icon: <Mail size={18} />,
                 label: "Email",
-                value: "hello@yourname.dev",
-                href: "mailto:hello@yourname.dev",
+                value: "front-son@naver.com",
+                href: "mailto:front-son@naver.com",
               },
               {
                 icon: <Github size={18} />,
                 label: "GitHub",
-                value: "github.com/yourname",
-                href: "https://github.com",
+                value: "github.com/shj-f",
+                href: "https://github.com/shj-f",
               },
             ].map(
-              ({ icon, label, value, href, isDownload }) => (
+              ({ icon, label, value, href, isDownload }: { icon: React.ReactNode; label: string; value: string; href: string; isDownload?: boolean }) => (
                 <a
                   key={label}
                   href={href}
@@ -1128,7 +1179,7 @@ export default function App() {
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
               }}
             >
-              © 2026 Your Name
+              © 2026 SON HYEOK JUN
             </p>
             <p
               className="text-xs mt-0.5"
@@ -1141,7 +1192,7 @@ export default function App() {
           </div>
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com"
+              href="https://github.com/shj-f"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
@@ -1149,7 +1200,7 @@ export default function App() {
               <Github size={16} />
             </a>
             <a
-              href="mailto:hello@yourname.dev"
+              href="mailto:front-son@naver.com"
               className="hover:text-white transition-colors"
             >
               <Mail size={16} />
