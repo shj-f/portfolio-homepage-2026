@@ -945,7 +945,7 @@ export default function App() {
                       className="shrink-0 text-[10px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200 rounded-full px-2 py-0.5"
                       style={{ fontFamily: "'JetBrains Mono', monospace" }}
                     >
-                      기여도 {p.contribution}%
+                      개발 기여도 {p.contribution}%
                     </span>
                   </div>
                 </div>
