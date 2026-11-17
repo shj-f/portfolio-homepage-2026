@@ -689,7 +689,7 @@ export default function App() {
                     },
                     {
                       key: "Career",
-                      value: "4년 6개월 실무 경험",
+                      value: "4년 7개월 실무 경험",
                     },
                     {
                       key: "Email",
